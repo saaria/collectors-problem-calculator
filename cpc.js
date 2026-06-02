@@ -170,6 +170,11 @@ function formatProbability(value) {
     return value.toFixed(16).replace(/\.0+$/, '') + '%';
 }
 
+// 費用のフォーマット（小数点以下は切り捨て）
+function formatCost(value) {
+    return Math.floor(value).toString();
+}
+
 // シミュレーション関数
 function simulateOnce(n) {
     const collected = new Set();
@@ -266,11 +271,11 @@ function calculate() {
 
     // 結果の表示
     document.getElementById('expectedTrials').textContent = expectedTrials.toFixed(2);
-    document.getElementById('expectedCost').textContent = expectedCost.toFixed(2);
+    document.getElementById('expectedCost').textContent = formatCost(expectedCost);
     document.getElementById('p90Text').textContent = p90;
     document.getElementById('p99Text').textContent = p99;
-    document.getElementById('cost90Text').textContent = cost90.toFixed(2);
-    document.getElementById('cost99Text').textContent = cost99.toFixed(2);
+    document.getElementById('cost90Text').textContent = formatCost(cost90);
+    document.getElementById('cost99Text').textContent = formatCost(cost99);
 }
 
 // イベントリスナーを設定
